@@ -1,0 +1,31 @@
+%filename: lung.m (main program)
+clear all
+clf
+global Pstar cstar n maxcount M Q camax RT cI;
+
+%reference oxygen concentration (moles/liter):
+cref=0.2/(22.4*(310/273))
+
+for i = 0:1:10
+
+
+    beta = .1*i;
+    for j = 0:2
+        %rate of oxygen consumption (moles/minute):
+        M=0.25*cref*5.6*j
+        setup_lung
+        cvsolve
+        outchecklung
+
+    %Plots Partial Pressures vs. Beta
+    figure(4)
+    plot(i,PI,"bo")
+    hold on
+    plot(i,PAbar,"ro")
+    plot(i,Pabar,"go")
+    plot(i,Pv,"co")
+    legend("Inspired PP","Mean Alveolar PP","Mean Arterial PP","Venous PP")
+    xlabel("Beta")
+    ylabel("Partial Pressure")
+    title("Partial Pressure vs. Beta")
+end
