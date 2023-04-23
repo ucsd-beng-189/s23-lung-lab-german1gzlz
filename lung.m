@@ -10,9 +10,9 @@ global Pstar cstar n maxcount M Q camax RT cI;
 % new PP = 59
 % atmosphere pressure = 281.8920
 % MAX Altitude = 26500
-    altitude = linspace(0,26500,25)
+    altitude = linspace(0,6250,8)
 cref=0.2/(22.4*(310/273));
-for i = 1:25
+for i = 1:8
     cI=cref-((i-1)*.0002)
     setup_lung;
     cvsolve;
