@@ -12,24 +12,29 @@ global Pstar cstar n maxcount M Q camax RT cI;
 % MAX Altitude = 26500
     altitude = linspace(0,14600,17)
 cref=0.2/(22.4*(310/273));
-beta = 1
-for i = 1:17
-    cI=cref-((i-1)*.0002)
+beta = .8
+for i = 1:200
+    %cI=cref-((i-1)*.0002)
+    cstar=cref*(1-((i-1)*.01))
     setup_lung;
     cvsolve;
     outchecklung;
 
     figure(4)
-    plot(altitude(i),PAbar,"ro")
+    plot(cstar,PAbar,"ro")
     hold on
-    plot(altitude(i),Pabar,"go")
-    plot(altitude(i),Pv,"co")
-    plot(altitude(i),PI,"bo");
+    plot(cstar,Pabar,"go")
+    plot(cstar,Pv,"co")
+    plot(cstar,PI,"bo");
 end
     legend("Mean Alveolar PP","Mean Arterial PP","Venous PP","Inspired Air PP")
-    xlabel("Atitude (ft)")
+    xlabel("cStar")
     ylabel("Partial Pressures (mmHg)")
-    title("Partial Pressures vs. Altitude")
+    title("Partial Pressures vs. cStar")
+%     legend("Mean Alveolar PP","Mean Arterial PP","Venous PP","Inspired Air PP")
+%     xlabel("Atitude (ft)")
+%     ylabel("Partial Pressures (mmHg)")
+%     title("Partial Pressures vs. Altitude")
 
 
 %% Previous TASKS
