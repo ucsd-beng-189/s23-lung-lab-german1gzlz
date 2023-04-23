@@ -20,7 +20,7 @@ cref=0.2/(22.4*(310/273))
 %
 %blood oxygen concentration
 %at full hemoglobin saturation: 
-cstar=cref
+cstar=cref*1.5
 %cstar=4*(concentration of hemoglobin 
 %in blood expressed in moles/liter)
 %
