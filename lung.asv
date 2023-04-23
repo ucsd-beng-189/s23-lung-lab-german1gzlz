@@ -3,24 +3,27 @@ clear all
 clf
 global Pstar cstar n maxcount M Q camax RT cI;
 
+%%760*.2
 cref=0.2/(22.4*(310/273));
-for i = 1:10
-    cI=cref
+for i = 0:20
+    cI=cref-(i*.0002)
 
     setup_lung;
     cvsolve;
     outchecklung;
 
     figure(4)
-    plot(i/10,PAbar,"ro")
+    plot(cI,PAbar,"ro")
     hold on
-    plot(i/10,Pabar,"go")
-    plot(i/10,Pv,"co")
-    plot(i/10,cI,"bo");
-    legend("Mean Alveolar PP","Mean Arterial PP","Venous PP","Concentration of Oxygen")
-    xlabel("Beta")
-    ylabel("Partial Pressure")
-    title("Partial Pressure vs. Beta")
+    plot(cI,Pabar,"go")
+    plot(cI,Pv,"co")
+    plot(cI,PI,"bo");
+end
+    legend("Mean Alveolar PP","Mean Arterial PP","Venous PP","Inspired Air PP")
+    xlabel("cI")
+    ylabel("Partial Pressures")
+    title("Partial Pressures vs. Concentration of Inspired Air")
+
 
 %% Previous TASKS
 %reference oxygen concentration (moles/liter):

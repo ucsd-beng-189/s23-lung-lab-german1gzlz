@@ -3,25 +3,28 @@ clear all
 clf
 global Pstar cstar n maxcount M Q camax RT cI;
 
+% 760*.2093=159 mmHh
+% 79/.2093 = atmosphere pressure = 377
+% MAX altitude = 19150 ft
+    altitude = linspace(0,19150,20)
 cref=0.2/(22.4*(310/273));
-for i = 0:20
-    cI=cref-(i*.0002)
-
+for i = 1:20
+    cI=cref-((i-1)*.0002)
     setup_lung;
     cvsolve;
     outchecklung;
 
     figure(4)
-    plot(cI,PAbar,"ro")
+    plot(altitude(i),PAbar,"ro")
     hold on
-    plot(cI,Pabar,"go")
-    plot(cI,Pv,"co")
-    plot(cI,PI,"bo");
+    plot(altitude(i),Pabar,"go")
+    plot(altitude(i),Pv,"co")
+    plot(altitude(i),PI,"bo");
 end
     legend("Mean Alveolar PP","Mean Arterial PP","Venous PP","Inspired Air PP")
-    xlabel("cI")
-    ylabel("Partial Pressures")
-    title("Partial Pressures vs. Concentration of Inspired Air")
+    xlabel("Atitude (ft)")
+    ylabel("Partial Pressures (mmHg)")
+    title("Partial Pressures vs. Altitude")
 
 
 %% Previous TASKS
